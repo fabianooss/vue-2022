@@ -1,9 +1,7 @@
 <template>
   <div>
-      <p>Autor: {{ autor }}</p>
-      <p :title="mensagem">{{ new Date().toLocaleString() }}</p>
-      <button @click="transformar()">Mudar autor</button>
-
+      <autor-header nome="Nome 1"></autor-header>
+      <autor-header nome="Nome 2"></autor-header>
       <div>
           <h2>Projetos</h2>  
           <button @click="mostraFormulario = true" v-show="!mostraFormulario">Formulário</button>
@@ -44,14 +42,19 @@
 
 <script>
 
+import AutorHeader from './components/AutorHeader.vue'
+
 export default {
+
+  components: {
+    AutorHeader, 
+  },
 
   data() {
     return {
       // json javascript object notation
-      autor: 'Fabiano Oss',
-      mensagem: 'Meu primeiro App vue',
-      maiusculaMinuscula: false,
+      
+ 
       filtro: '',
       mostraFormulario: false,
       selected: null,
@@ -91,13 +94,7 @@ export default {
       return this.selected != null && this.selected.id == projeto.id
     },
 
-    transformar() {
-      this.autor = this.maiusculaMinuscula 
-                      ? this.autor.toUpperCase()
-                      : this.autor.toLowerCase()
-      this.maiusculaMinuscula = !this.maiusculaMinuscula
-       
-    },
+
     getMaiorId() {
         //Math.max(...this.projetos.map( p => p.id))
 
